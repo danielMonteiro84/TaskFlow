@@ -6,8 +6,8 @@ export const style = StyleSheet.create({
     width: "100%",
     alignItems: "center",
     justifyContent: "space-around",
+    backgroundColor: "#F4C27F99",
     padding: 30,
-    backgroundColor: "#F4C27F80",
   },
   boxTop: {
     height: Dimensions.get("window").height / 3,
@@ -31,15 +31,14 @@ export const style = StyleSheet.create({
 
   boxMid: {
     width: "95%",
-
     justifyContent: "space-around",
     flexDirection: "column",
-    height: 100,
+    height: 150,
   },
 
   boxImput: {
     width: "100%",
-    height: 40,
+    height: 50,
     borderRadius: 24,
     flexDirection: "row",
     alignItems: "center",
@@ -56,26 +55,34 @@ export const style = StyleSheet.create({
   },
 
   boxBottom: {
-    width: "100%",
+    width: "auto",
     elevation: 10,
     alignItems: "center",
     justifyContent: "center",
   },
 
   button: {
-    width: 200,
-    height: 50,
+    width: 315,
+    height: 56,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#CE8440",
     borderRadius: 30,
-    elevation: 10,
+    elevation: 5,
   },
 
   textButton: {
-    fontSize: 16,
+    fontSize: 22,
     fontFamily: "PoppinsRegular",
     color: "#FFFFFF",
+    fontWeight: "bold",
+    textShadowColor: "rgba(0, 0, 0, 0.5)",
+    textShadowOffset: { width: 2, height: 2 },
+    textShadowRadius: 4,
+  },
+
+  textBottom: {
     fontWeight: "semibold",
+    textAlign: "center",
+    fontFamily: "PoppinsRegular",
   },
 });
