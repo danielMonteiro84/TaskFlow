@@ -13,8 +13,11 @@ import { MaterialIcons, Octicons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import { Input } from "../../components/Input";
 import { Button } from "../../components/Button";
+import { useNavigation, NavigationProp } from "@react-navigation/native";
 
 export default function Login() {
+  const navigation = useNavigation<NavigationProp<any>>();
+
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [showSenha, setShowSenha] = useState(true);
@@ -24,7 +27,7 @@ export default function Login() {
       if (!email || !senha) {
         return Alert.alert("Atenção", "Campos Obrigatórios");
       }
-      Alert.alert("Bem vindo!");
+      navigation.navigate("BottomRoutes");
     } catch (error) {
       console.log(error);
     }

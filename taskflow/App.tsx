@@ -1,10 +1,13 @@
+import "react-native-gesture-handler";
 import {
   useFonts,
   Poppins_400Regular,
   Poppins_700Bold,
 } from "@expo-google-fonts/poppins";
-import { StyleSheet, Text, View } from "react-native";
-import Login from "./src/pages/login";
+import { StyleSheet } from "react-native";
+
+import Routes from "./src/routes/index.routes";
+import { NavigationContainer } from "@react-navigation/native";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -13,9 +16,9 @@ export default function App() {
   });
 
   return (
-    <View style={styles.container}>
-      <Login />
-    </View>
+    <NavigationContainer>
+      <Routes />
+    </NavigationContainer>
   );
 }
 
