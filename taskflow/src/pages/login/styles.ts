@@ -36,48 +36,11 @@ export const style = StyleSheet.create({
     height: 150,
   },
 
-  boxImput: {
-    width: "100%",
-    height: 50,
-    borderRadius: 24,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    paddingHorizontal: 10,
-    backgroundColor: "#ffffff",
-    elevation: 10,
-  },
-
-  input: {
-    flex: 1,
-    height: "100%",
-    borderRadius: 30,
-  },
-
   boxBottom: {
     width: "auto",
     elevation: 10,
     alignItems: "center",
     justifyContent: "center",
-  },
-
-  button: {
-    width: 315,
-    height: 56,
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: 30,
-    elevation: 5,
-  },
-
-  textButton: {
-    fontSize: 22,
-    fontFamily: "PoppinsRegular",
-    color: "#FFFFFF",
-    fontWeight: "bold",
-    textShadowColor: "rgba(0, 0, 0, 0.5)",
-    textShadowOffset: { width: 2, height: 2 },
-    textShadowRadius: 4,
   },
 
   textBottom: {
