@@ -49,6 +49,16 @@ export const style = StyleSheet.create({
   listCard: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "flex-start",
+    justifyContent: "space-between",
+  },
+  textCard: {
+    fontSize: 14,
+    fontWeight: "bold",
+    fontFamily: "PoppinsRegular",
+  },
+  descriptionCard: {
+    fontWeight: "semibold",
+    fontFamily: "PoppinsRegular",
+    fontSize: 10,
   },
 });

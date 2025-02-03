@@ -4,6 +4,7 @@ import { style } from "./styles";
 import { Input } from "../../components/Input";
 import { LinearGradient } from "expo-linear-gradient";
 import { MaterialIcons } from "@expo/vector-icons";
+import { Flag } from "../../components/Flag";
 
 type PropCard = {
   item: number;
@@ -41,9 +42,10 @@ export default function List() {
       <TouchableOpacity style={style.card}>
         <View style={style.listCard}>
           <View>
-            <Text>{item.title}</Text>
-            <Text>{item.description}</Text>
+            <Text style={style.textCard}>{item.title}</Text>
+            <Text style={style.descriptionCard}>{item.description}</Text>
           </View>
+          <Flag caption="Pendente " color={"#F44336"} />
         </View>
       </TouchableOpacity>
     );
