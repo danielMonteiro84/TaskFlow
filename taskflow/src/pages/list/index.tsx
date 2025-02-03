@@ -1,6 +1,11 @@
 import React from "react";
-import { Text } from "react-native";
+import { Text, View } from "react-native";
+import { style } from "./styles";
 
 export default function List() {
-  return <Text>Lista de Itens</Text>;
+  return (
+    <View style={style.tela}>
+      <Text>Lista </Text>
+    </View>
+  );
 }

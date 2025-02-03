@@ -22,12 +22,12 @@ export default function Login() {
   const [senha, setSenha] = useState("");
   const [showSenha, setShowSenha] = useState(true);
 
-  function getLogin() {
+  async function getLogin() {
     try {
       if (!email || !senha) {
         return Alert.alert("Atenção", "Campos Obrigatórios");
       }
-      navigation.navigate("BottomRoutes");
+      navigation.reset({ routes: [{ name: "BottomRoutes" }] });
     } catch (error) {
       console.log(error);
     }

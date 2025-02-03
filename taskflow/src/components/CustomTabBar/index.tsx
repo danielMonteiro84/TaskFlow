@@ -10,10 +10,21 @@ import {
 import { LinearGradient } from "expo-linear-gradient";
 
 export default ({ state, navigation }: any) => {
+  const go = (screenName: string) => {
+    navigation.navigate(screenName);
+  };
+
   return (
     <View style={style.tabArea}>
-      <TouchableOpacity style={style.tabItem}>
-        <AntDesign name="bars" style={{ fontSize: 32 }} />
+      <TouchableOpacity style={style.tabItem} onPress={() => go("List")}>
+        <AntDesign
+          name="bars"
+          style={{
+            opacity: state.index === 0 ? 1 : 0.3,
+            color: "#D8605B",
+            fontSize: 32,
+          }}
+        />
       </TouchableOpacity>
       <TouchableOpacity>
         <LinearGradient colors={["#F4C27F", "#D8605B"]} style={style.tabButton}>
@@ -32,8 +43,15 @@ export default ({ state, navigation }: any) => {
           </View>
         </LinearGradient>
       </TouchableOpacity>
-      <TouchableOpacity style={style.tabItem}>
-        <FontAwesome name="user" style={{ fontSize: 32 }} />
+      <TouchableOpacity style={style.tabItem} onPress={() => go("User")}>
+        <FontAwesome
+          name="user"
+          style={{
+            opacity: state.index === 1 ? 1 : 0.3,
+            color: "#D8605B",
+            fontSize: 32,
+          }}
+        />
       </TouchableOpacity>
     </View>
   );
