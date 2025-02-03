@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 import { style } from "./styles";
 import {
@@ -8,8 +8,11 @@ import {
   MaterialIcons,
 } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
+import { AuthContextList } from "../../context/authContext_list";
 
 export default ({ state, navigation }: any) => {
+  const { onOpen } = useContext<any>(AuthContextList);
+
   const go = (screenName: string) => {
     navigation.navigate(screenName);
   };
@@ -26,7 +29,7 @@ export default ({ state, navigation }: any) => {
           }}
         />
       </TouchableOpacity>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => onOpen()}>
         <LinearGradient colors={["#F4C27F", "#D8605B"]} style={style.tabButton}>
           <View style={{ width: "100%", left: 7, top: 4 }}>
             <Entypo name="plus" size={40} color={"#fff"} />
