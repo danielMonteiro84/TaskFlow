@@ -5,7 +5,6 @@ import {
   Poppins_700Bold,
 } from "@expo-google-fonts/poppins";
 import { StyleSheet } from "react-native";
-
 import Routes from "./src/routes/index.routes";
 import { NavigationContainer } from "@react-navigation/native";
 
