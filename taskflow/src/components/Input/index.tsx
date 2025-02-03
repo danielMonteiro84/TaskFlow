@@ -23,6 +23,7 @@ type Props = TextInputProps & {
   IconRightName?: string;
   onIconLeftPress?: () => void;
   onIconRightPress?: () => void;
+  height?: number;
 };
 
 export const Input = forwardRef(
@@ -35,6 +36,7 @@ export const Input = forwardRef(
       IconRightName,
       onIconLeftPress,
       onIconRightPress,
+      height,
       ...rest
     } = Props;
 
@@ -48,9 +50,24 @@ export const Input = forwardRef(
       }
     };
 
+    const calculateSizePaddingLeft = () => {
+      if (IconLeft && IconRight) {
+        return 0;
+      } else if (IconLeft || IconRight) {
+        return 10;
+      } else {
+        return 20;
+      }
+    };
+
     return (
       <Fragment>
-        <View style={style.boxInput}>
+        <View
+          style={[
+            style.boxInput,
+            { paddingLeft: calculateSizePaddingLeft(), height: height || 50 },
+          ]}
+        >
           {IconRight && IconRightName && (
             <TouchableOpacity onPress={onIconRightPress}>
               <IconRight
