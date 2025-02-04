@@ -1,23 +1,53 @@
 import React, { createContext, useContext, useRef } from "react";
-import { Alert, Dimensions, Text, TouchableOpacity, View } from "react-native";
+import {
+  Alert,
+  Dimensions,
+  Text,
+  TouchableOpacity,
+  View,
+  KeyboardAvoidingView,
+  Platform,
+} from "react-native";
 import { Modalize } from "react-native-modalize";
 import { MaterialIcons, AntDesign } from "@expo/vector-icons";
 import { style } from "./styles";
 import { Input } from "../components/Input";
+import { Flag } from "../components/Flag";
 
 export const AuthContextList: any = createContext({});
 
+const flags = [
+  { caption: "pendente ", color: "red" },
+  { caption: "feito ", color: "blue" },
+];
+
 export const AuthProviderList = (props: any): any => {
   const modalizeRef = useRef<Modalize>(null);
+
   const onOpen = () => {
     modalizeRef?.current?.open();
   };
 
+  const onClose = () => {
+    modalizeRef?.current?.close();
+  };
+
+  const _renderFlags = () => {
+    return flags.map((item, index) => (
+      <TouchableOpacity key={index}>
+        <Flag caption={item.caption} color={item.color} />
+      </TouchableOpacity>
+    ));
+  };
+
   const _container = () => {
     return (
-      <View style={style.container}>
+      <KeyboardAvoidingView
+        style={style.container}
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+      >
         <View style={style.header}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => onClose()}>
             <MaterialIcons name="close" size={30} />
           </TouchableOpacity>
           <Text style={style.title}>Criar Tarefa</Text>
@@ -30,13 +60,9 @@ export const AuthProviderList = (props: any): any => {
           <Input />
           <Text style={style.text}>Descrição</Text>
           <Input height={150} />
-          <View style={{ width: "40%" }}>
-            <Text style={style.text}>Data Limite</Text>
-            <Input />
-          </View>
-          <View style={style.flag}></View>
+          <View style={style.containerFlag}>{_renderFlags()}</View>
         </View>
-      </View>
+      </KeyboardAvoidingView>
     );
   };
 
@@ -45,7 +71,7 @@ export const AuthProviderList = (props: any): any => {
       {props.children}
       <Modalize
         ref={modalizeRef}
-        childrenStyle={{ height: Dimensions.get("window").height / 1.3 }}
+        childrenStyle={{ height: Dimensions.get("window").height / 1.9 }}
         adjustToContentHeight={true}
       >
         {_container()}
