@@ -61,4 +61,21 @@ export const style = StyleSheet.create({
     fontFamily: "PoppinsRegular",
     fontSize: 10,
   },
+  buttom: {
+    backgroundColor: "red",
+    justifyContent: "center",
+    alignItems: "center",
+    width: 85,
+    marginVertical: 10,
+    borderRadius: 10,
+  },
+
+  buttomLeft: {
+    backgroundColor: "blue",
+    justifyContent: "center",
+    alignItems: "center",
+    width: 85,
+    marginVertical: 10,
+    borderRadius: 10,
+  },
 });
