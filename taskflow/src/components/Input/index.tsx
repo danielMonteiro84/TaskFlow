@@ -18,6 +18,7 @@ type IconComponent = React.ComponentType<
 type Props = TextInputProps & {
   IconLeft?: IconComponent;
   IconRight?: IconComponent;
+  title?: string;
   placeholder?: string;
   IconLeftName?: string;
   IconRightName?: string;
@@ -29,6 +30,7 @@ type Props = TextInputProps & {
 export const Input = forwardRef(
   (Props: Props, ref: LegacyRef<TextInput> | null) => {
     const {
+      title,
       IconLeft,
       IconRight,
       placeholder,
