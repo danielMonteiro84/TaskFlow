@@ -11,7 +11,8 @@ import { LinearGradient } from "expo-linear-gradient";
 import { AuthContextList } from "../../context/authContext_list";
 
 export default ({ state, navigation }: any) => {
-  const { onOpen } = useContext<any>(AuthContextList);
+  const { onOpen, setDescription, setTask, setSelectedFlag } =
+    useContext<any>(AuthContextList);
 
   const go = (screenName: string) => {
     navigation.navigate(screenName);
@@ -29,7 +30,14 @@ export default ({ state, navigation }: any) => {
           }}
         />
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => onOpen()}>
+      <TouchableOpacity
+        onPress={() => {
+          setDescription("");
+          setTask("");
+          setSelectedFlag("Pendente");
+          onOpen();
+        }}
+      >
         <LinearGradient colors={["#F4C27F", "#D8605B"]} style={style.tabButton}>
           <View style={{ width: "100%", left: 7, top: 4 }}>
             <Entypo name="plus" size={40} color={"#fff"} />

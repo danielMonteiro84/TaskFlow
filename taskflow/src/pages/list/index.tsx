@@ -40,7 +40,7 @@ export default function List() {
   };
 
   const _listCard = (item: PropCard, index: number) => {
-    const color = item.flag === "pendente" ? "red" : "blue";
+    const color = item.flag === "Pendente" ? "#fd7e14" : "#28a745";
     return (
       <Swipeable
         ref={(ref) => (swipeableRefs.current[index] = ref)}

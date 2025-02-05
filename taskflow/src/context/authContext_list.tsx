@@ -24,8 +24,8 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 export const AuthContextList: any = createContext({});
 
 const flags = [
-  { caption: "pendente ", color: "red" },
-  { caption: "feito ", color: "blue" },
+  { caption: "Pendente", color: "#fd7e14" },
+  { caption: "Pronto", color: "#28a745" },
 ];
 
 export const AuthProviderList = (props: any): any => {
@@ -33,7 +33,7 @@ export const AuthProviderList = (props: any): any => {
 
   const [task, setTask] = useState("");
   const [description, setDescription] = useState("");
-  const [selectedFlag, setSelectedFlag] = useState("pendente ");
+  const [selectedFlag, setSelectedFlag] = useState("Pendente");
   const [item, setItem] = useState(0);
   const [taskList, setTaskList] = useState([]);
 
@@ -75,7 +75,7 @@ export const AuthProviderList = (props: any): any => {
         item: item !== 0 ? item : Date.now(),
         task,
         description,
-        flag: selectedFlag || "pendente",
+        flag: selectedFlag || "Pendente",
       };
       const storageData = await AsyncStorage.getItem("taskList");
       let taskList: Array<any> = storageData ? JSON.parse(storageData) : [];
@@ -101,7 +101,7 @@ export const AuthProviderList = (props: any): any => {
   const setData = () => {
     setTask("");
     setDescription("");
-    setSelectedFlag("pendente");
+    setSelectedFlag("Pendente");
     setItem(0);
   };
 
@@ -177,7 +177,15 @@ export const AuthProviderList = (props: any): any => {
 
   return (
     <AuthContextList.Provider
-      value={{ onOpen, taskList, handleDelete, handleEdit }}
+      value={{
+        onOpen,
+        taskList,
+        handleDelete,
+        handleEdit,
+        setDescription,
+        setTask,
+        setSelectedFlag,
+      }}
     >
       {props.children}
       <Modalize

@@ -12,4 +12,4 @@ type PropCard = {
   task: string;
 };
 
-type PropFlags = "pendente" | "feito";
+type PropFlags = "Pendente" | "Pronto";

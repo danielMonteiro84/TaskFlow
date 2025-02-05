@@ -56,7 +56,7 @@ export const style = StyleSheet.create({
     fontSize: 10,
   },
   buttomDelete: {
-    backgroundColor: "red",
+    backgroundColor: "#dc3545",
     justifyContent: "center",
     alignItems: "center",
     width: 100,
@@ -65,7 +65,7 @@ export const style = StyleSheet.create({
   },
 
   buttomLeft: {
-    backgroundColor: "blue",
+    backgroundColor: "#007bff",
     justifyContent: "center",
     alignItems: "center",
     width: 100,
