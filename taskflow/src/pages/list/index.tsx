@@ -1,5 +1,5 @@
 import React, { useContext, useRef } from "react";
-import { FlatList, Text, TouchableOpacity, View } from "react-native";
+import { FlatList, Text, View } from "react-native";
 import { style } from "./styles";
 import { Input } from "../../components/Input";
 import { LinearGradient } from "expo-linear-gradient";
@@ -9,39 +9,45 @@ import { AuthContextList } from "../../context/authContext_list";
 import { Swipeable } from "react-native-gesture-handler";
 
 export default function List() {
-  const { taskList, handleDelete } =
+  const { taskList, handleDelete, handleEdit } =
     useContext<AuthContextType>(AuthContextList);
+
   const swipeableRefs = useRef([]);
-  const renderRightActions = () => {
-    return (
-      <View style={style.buttom}>
-        <AntDesign name="delete" size={25} color={"#fff"} />
-      </View>
-    );
-  };
 
-  const renderLeftActions = () => {
-    return (
-      <View style={style.buttomLeft}>
-        <AntDesign name="edit" size={25} color={"#fff"} />
-      </View>
-    );
-  };
+  const renderRightActions = () => (
+    <View style={style.buttomDelete}>
+      <AntDesign name="delete" size={25} color={"#fff"} />
+    </View>
+  );
 
-  const handleSwipeOpen = (directions: "right" | "left", item, index) => {
-    if (directions == "right") handleDelete(item);
+  const renderLeftActions = () => (
+    <View style={style.buttomLeft}>
+      <AntDesign name="edit" size={25} color={"#fff"} />
+    </View>
+  );
+
+  const handleSwipeOpen = (
+    directions: "right" | "left",
+    item: any,
+    index: number
+  ) => {
+    if (directions === "right") {
+      handleDelete(item);
+    } else {
+      handleEdit(item);
+    }
     swipeableRefs.current[index]?.close();
   };
 
-  const _listCard = (item: PropCard, index) => {
-    const color = item.flag == "pendente" ? "red" : "blue";
+  const _listCard = (item: PropCard, index: number) => {
+    const color = item.flag === "pendente" ? "red" : "blue";
     return (
       <Swipeable
         ref={(ref) => (swipeableRefs.current[index] = ref)}
         key={index}
         renderRightActions={renderRightActions}
         renderLeftActions={renderLeftActions}
-        onSwipeableOpen={(directions) => handleSwipeOpen(directions, item)}
+        onSwipeableOpen={(direction) => handleSwipeOpen(direction, item, index)}
       >
         <View style={style.card}>
           <View style={style.listCard}>
@@ -65,7 +71,7 @@ export default function List() {
       >
         <View style={style.header}>
           <Text style={style.saudacao}>
-            Bom dia, <Text style={{ fontWeight: "bold" }}>Daniel </Text>{" "}
+            Bem vindo, <Text style={{ fontWeight: "bold" }}>Daniel </Text>{" "}
           </Text>
           <View style={style.boxInput}>
             <Input IconLeft={MaterialIcons} IconLeftName="search" />

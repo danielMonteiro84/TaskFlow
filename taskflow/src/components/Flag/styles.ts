@@ -10,4 +10,7 @@ export const style = StyleSheet.create({
     borderRadius: 7,
     elevation: 5,
   },
+  caption: {
+    color: "#fff",
+  },
 });

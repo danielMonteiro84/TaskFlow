@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, TouchableOpacity, View } from "react-native";
+import { Text, View } from "react-native";
 import { style } from "./styles";
 
 type Props = {
@@ -17,7 +17,7 @@ export function Flag({ ...rest }: Props) {
         rest?.selected && { borderWidth: 2 },
       ]}
     >
-      <Text style={{ color: "#fff" }}>{rest.caption}</Text>
+      <Text style={style.caption}>{rest.caption}</Text>
     </View>
   );
 }

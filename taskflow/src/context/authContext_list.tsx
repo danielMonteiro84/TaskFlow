@@ -33,7 +33,7 @@ export const AuthProviderList = (props: any): any => {
 
   const [task, setTask] = useState("");
   const [description, setDescription] = useState("");
-  const [selectedFlag, setSelectedFlag] = useState("pendente");
+  const [selectedFlag, setSelectedFlag] = useState("pendente ");
   const [item, setItem] = useState(0);
   const [taskList, setTaskList] = useState([]);
 
@@ -67,20 +67,29 @@ export const AuthProviderList = (props: any): any => {
   };
 
   const handleSave = async () => {
-    if (!task || !description) {
+    if (!task || !description || !selectedFlag) {
       return Alert.alert("Atenção", "Preencha todos os campos!");
     }
     try {
       const newTask = {
-        item: Date.now(),
+        item: item !== 0 ? item : Date.now(),
         task,
         description,
-        flag: selectedFlag,
+        flag: selectedFlag || "pendente",
       };
       const storageData = await AsyncStorage.getItem("taskList");
-      let taskList = storageData ? JSON.parse(storageData) : [];
+      let taskList: Array<any> = storageData ? JSON.parse(storageData) : [];
 
-      taskList.push(newTask);
+      const itemIndex = taskList.findIndex(
+        (task) => task.item === newTask.item
+      );
+
+      if (itemIndex >= 0) {
+        taskList[itemIndex] = newTask;
+      } else {
+        taskList.push(newTask);
+      }
+
       await AsyncStorage.setItem("taskList", JSON.stringify(taskList));
       setTaskList(taskList);
       setData();
@@ -93,6 +102,7 @@ export const AuthProviderList = (props: any): any => {
     setTask("");
     setDescription("");
     setSelectedFlag("pendente");
+    setItem(0);
   };
 
   async function get_taskList() {
@@ -108,7 +118,6 @@ export const AuthProviderList = (props: any): any => {
     try {
       const storageData = await AsyncStorage.getItem("taskList");
       const taskList = storageData ? JSON.parse(storageData) : [];
-
       const updatedtaskList = taskList.filter(
         (item) => item.item !== itemToDelete.item
       );
@@ -117,6 +126,18 @@ export const AuthProviderList = (props: any): any => {
       setTaskList(updatedtaskList);
     } catch (error) {
       console.log("Erro ao excluir a tarefa", error);
+    }
+  };
+
+  const handleEdit = async (itemToEdit: PropCard) => {
+    try {
+      setTask(itemToEdit.task);
+      setDescription(itemToEdit.description);
+      setItem(itemToEdit.item);
+      setSelectedFlag(itemToEdit.flag);
+      onOpen();
+    } catch (error) {
+      console.log("Erro ao editar", error);
     }
   };
 
@@ -155,7 +176,9 @@ export const AuthProviderList = (props: any): any => {
   };
 
   return (
-    <AuthContextList.Provider value={{ onOpen, taskList, handleDelete }}>
+    <AuthContextList.Provider
+      value={{ onOpen, taskList, handleDelete, handleEdit }}
+    >
       {props.children}
       <Modalize
         ref={modalizeRef}
