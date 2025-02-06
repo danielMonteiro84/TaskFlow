@@ -25,7 +25,7 @@ export const AuthContextList: any = createContext({});
 
 const flags = [
   { caption: "Pendente", color: "#fd7e14" },
-  { caption: "Pronto", color: "#28a745" },
+  { caption: "Concluído", color: "#28a745" },
 ];
 
 export const AuthProviderList = (props: any): any => {
@@ -79,7 +79,7 @@ export const AuthProviderList = (props: any): any => {
             ? task.title.substring(0, 25) + "..."
             : task.title,
         description: "Descrição vinda da API",
-        flag: task.completed ? "Pronto" : "Pendente",
+        flag: task.completed ? "Concluído" : "Pendente",
       }));
 
       await AsyncStorage.setItem("taskList", JSON.stringify(formattedTasks));
@@ -145,18 +145,33 @@ export const AuthProviderList = (props: any): any => {
   };
 
   const handleDelete = async (itemToDelete) => {
-    try {
-      const updatedTaskList = taskList.filter(
-        (t) => t.item !== itemToDelete.item
-      );
+    Alert.alert(
+      "Confirmar Exclusão",
+      "Tem certeza que deseja excluir esta tarefa?",
+      [
+        { text: "Cancelar", style: "cancel" },
+        {
+          text: "Excluir",
+          onPress: async () => {
+            try {
+              const updatedTaskList = taskList.filter(
+                (t) => t.item !== itemToDelete.item
+              );
 
-      await AsyncStorage.setItem("taskList", JSON.stringify(updatedTaskList));
-      setTaskList(updatedTaskList);
-    } catch (error) {
-      console.log("Erro ao excluir a tarefa", error);
-    }
+              await AsyncStorage.setItem(
+                "taskList",
+                JSON.stringify(updatedTaskList)
+              );
+              setTaskList(updatedTaskList);
+            } catch (error) {
+              console.log("Erro ao excluir a tarefa", error);
+            }
+          },
+        },
+      ],
+      { cancelable: false }
+    );
   };
-
   const handleEdit = async (itemToEdit: PropCard) => {
     try {
       setTask(itemToEdit.task);

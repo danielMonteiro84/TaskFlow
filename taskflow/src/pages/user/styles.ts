@@ -60,7 +60,7 @@ export const style = StyleSheet.create({
     height: "65%",
     backgroundColor: "#fff",
     alignItems: "center",
-    justifyContent: "flex-start",
+    justifyContent: "center",
     padding: 10,
   },
 
@@ -72,5 +72,14 @@ export const style = StyleSheet.create({
     marginTop: 20,
     elevation: 8,
     backgroundColor: "#fff",
+    position: "relative",
+  },
+
+  imagemTempo: {
+    width: "100%",
+    height: "100%",
+    position: "absolute",
+    top: 0,
+    left: 0,
   },
 });

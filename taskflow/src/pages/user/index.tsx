@@ -3,6 +3,7 @@ import { Text, View, Image, TouchableOpacity } from "react-native";
 import { style } from "./styles";
 import ProfilePicture from "../../assets/profile.png";
 import LoginPicture from "../../assets/login.png";
+import TempoPicture from "../../assets/tempo.png.png";
 
 export default function User() {
   return (
@@ -20,8 +21,13 @@ export default function User() {
         </TouchableOpacity>
       </View>
       <View style={style.bottom}>
-        <Image source={LoginPicture} style={style.image} resizeMode="contain" />
-        <View style={style.boxBottom}></View>
+        <View style={style.boxBottom}>
+          <Image
+            source={TempoPicture}
+            style={style.imagemTempo}
+            resizeMode="contain"
+          />
+        </View>
       </View>
     </View>
   );

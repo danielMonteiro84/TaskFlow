@@ -14,7 +14,7 @@ export function Flag({ ...rest }: Props) {
       style={[
         style.container,
         { backgroundColor: rest?.color },
-        rest?.selected && { borderWidth: 2 },
+        rest?.selected && { borderWidth: 2, borderColor: "#fff" },
       ]}
     >
       <Text style={style.caption}>{rest.caption}</Text>
