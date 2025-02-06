@@ -71,7 +71,7 @@ export default function List() {
       >
         <View style={style.header}>
           <Text style={style.saudacao}>
-            Bem vindo, <Text style={{ fontWeight: "bold" }}>Daniel </Text>{" "}
+            Bem vindo, <Text style={{ fontWeight: "bold" }}>Usuário </Text>{" "}
           </Text>
           <View style={style.boxInput}>
             <Input IconLeft={MaterialIcons} IconLeftName="search" />

@@ -67,7 +67,7 @@ export const AuthProviderList = (props: any): any => {
   async function fetchTasksFromAPI() {
     try {
       const response = await fetch(
-        "https://jsonplaceholder.typicode.com/todos?_limit=5"
+        "https://jsonplaceholder.typicode.com/todos?_limit=10"
       );
 
       const data = await response.json();
