@@ -33,10 +33,9 @@ export const style = StyleSheet.create({
     width: "100%",
     height: 60,
     backgroundColor: "#fff",
-    borderRadius: 5,
+    borderRadius: 25,
     justifyContent: "center",
     padding: 15,
-    elevation: 10,
     marginBottom: 15,
   },
 
@@ -59,17 +58,17 @@ export const style = StyleSheet.create({
     backgroundColor: "#dc3545",
     justifyContent: "center",
     alignItems: "center",
-    width: 100,
+    width: 90,
     marginVertical: 10,
-    borderRadius: 5,
+    borderRadius: 25,
   },
 
   buttomLeft: {
     backgroundColor: "#007bff",
     justifyContent: "center",
     alignItems: "center",
-    width: 100,
+    width: 90,
     marginVertical: 10,
-    borderRadius: 10,
+    borderRadius: 25,
   },
 });

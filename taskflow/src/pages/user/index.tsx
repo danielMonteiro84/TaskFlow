@@ -1,16 +1,27 @@
 import React from "react";
-import { Text, View, Image } from "react-native";
+import { Text, View, Image, TouchableOpacity } from "react-native";
 import { style } from "./styles";
-import LoginPicture from "../../assets/profilepicture.png";
+import ProfilePicture from "../../assets/profile.png";
+import LoginPicture from "../../assets/login.png";
 
 export default function User() {
   return (
-    <View style={style.tela}>
-      <View style={style.user}></View>
-      <Image source={LoginPicture} style={style.image} resizeMode="contain" />
-
+    <View style={style.container}>
+      <View style={style.user}>
+        <Image
+          source={ProfilePicture}
+          style={style.image}
+          resizeMode="contain"
+        />
+        <Text style={style.text}>Usuário Logado</Text>
+        <Text style={style.textUser}>@usuariologado</Text>
+        <TouchableOpacity style={style.button}>
+          <Text style={style.textButton}>Sair</Text>
+        </TouchableOpacity>
+      </View>
       <View style={style.bottom}>
-        <Text>User </Text>
+        <Image source={LoginPicture} style={style.image} resizeMode="contain" />
+        <View style={style.boxBottom}></View>
       </View>
     </View>
   );

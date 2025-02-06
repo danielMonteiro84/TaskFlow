@@ -5,7 +5,7 @@ export const style = StyleSheet.create({
     width: 80,
     height: 30,
     justifyContent: "center",
-    borderRadius: 7,
+    borderRadius: 15,
     elevation: 5,
   },
   caption: {

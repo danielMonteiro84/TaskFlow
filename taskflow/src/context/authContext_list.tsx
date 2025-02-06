@@ -74,9 +74,12 @@ export const AuthProviderList = (props: any): any => {
 
       const formattedTasks = data.map((task) => ({
         item: task.id,
-        task: task.title,
+        task:
+          task.title.length > 10
+            ? task.title.substring(0, 25) + "..."
+            : task.title,
         description: "Descrição vinda da API",
-        flag: "Pendente",
+        flag: task.completed ? "Pronto" : "Pendente",
       }));
 
       await AsyncStorage.setItem("taskList", JSON.stringify(formattedTasks));
@@ -141,15 +144,6 @@ export const AuthProviderList = (props: any): any => {
     setItem(0);
   };
 
-  // async function get_taskList() {
-  //   try {
-  //     const storageData = await AsyncStorage.getItem("taskList");
-  //     const taskList = storageData ? JSON.parse(storageData) : [];
-  //     setTaskList(taskList);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
   const handleDelete = async (itemToDelete) => {
     try {
       const updatedTaskList = taskList.filter(

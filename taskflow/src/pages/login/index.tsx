@@ -1,12 +1,5 @@
 import React, { useState } from "react";
-import {
-  Text,
-  View,
-  Image,
-  TextInput,
-  TouchableOpacity,
-  Alert,
-} from "react-native";
+import { Text, View, Image, Alert } from "react-native";
 import { style } from "./styles";
 import LoginPicture from "../../assets/login.png";
 import { MaterialIcons, Octicons } from "@expo/vector-icons";
