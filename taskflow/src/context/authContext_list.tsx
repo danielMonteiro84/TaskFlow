@@ -46,8 +46,45 @@ export const AuthProviderList = (props: any): any => {
   };
 
   useEffect(() => {
-    get_taskList();
+    checkAndFetchTasks();
   }, []);
+
+  async function checkAndFetchTasks() {
+    try {
+      const storageData = await AsyncStorage.getItem("taskList");
+      const tasks = storageData ? JSON.parse(storageData) : [];
+
+      if (tasks.length === 0) {
+        await fetchTasksFromAPI();
+      } else {
+        setTaskList(tasks);
+      }
+    } catch (error) {
+      console.log("Erro ao carregar tarefas!", error);
+    }
+  }
+
+  async function fetchTasksFromAPI() {
+    try {
+      const response = await fetch(
+        "https://jsonplaceholder.typicode.com/todos?_limit=5"
+      );
+
+      const data = await response.json();
+
+      const formattedTasks = data.map((task) => ({
+        item: task.id,
+        task: task.title,
+        description: "Descrição vinda da API",
+        flag: "Pendente",
+      }));
+
+      await AsyncStorage.setItem("taskList", JSON.stringify(formattedTasks));
+      setTaskList(formattedTasks);
+    } catch (error) {
+      console.log("Erro ao buscar tarefas da API:", error);
+    }
+  }
 
   const _renderFlags = () => {
     return flags.map((item, index) => (
@@ -77,21 +114,20 @@ export const AuthProviderList = (props: any): any => {
         description,
         flag: selectedFlag || "Pendente",
       };
-      const storageData = await AsyncStorage.getItem("taskList");
-      let taskList: Array<any> = storageData ? JSON.parse(storageData) : [];
 
-      const itemIndex = taskList.findIndex(
+      let taskListCopy = [...taskList];
+      const itemIndex = taskListCopy.findIndex(
         (task) => task.item === newTask.item
       );
 
       if (itemIndex >= 0) {
-        taskList[itemIndex] = newTask;
+        taskListCopy[itemIndex] = newTask;
       } else {
-        taskList.push(newTask);
+        taskListCopy.push(newTask);
       }
 
-      await AsyncStorage.setItem("taskList", JSON.stringify(taskList));
-      setTaskList(taskList);
+      await AsyncStorage.setItem("taskList", JSON.stringify(taskListCopy));
+      setTaskList(taskListCopy);
       setData();
       onClose();
     } catch (error) {
@@ -105,25 +141,23 @@ export const AuthProviderList = (props: any): any => {
     setItem(0);
   };
 
-  async function get_taskList() {
-    try {
-      const storageData = await AsyncStorage.getItem("taskList");
-      const taskList = storageData ? JSON.parse(storageData) : [];
-      setTaskList(taskList);
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  // async function get_taskList() {
+  //   try {
+  //     const storageData = await AsyncStorage.getItem("taskList");
+  //     const taskList = storageData ? JSON.parse(storageData) : [];
+  //     setTaskList(taskList);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
   const handleDelete = async (itemToDelete) => {
     try {
-      const storageData = await AsyncStorage.getItem("taskList");
-      const taskList = storageData ? JSON.parse(storageData) : [];
-      const updatedtaskList = taskList.filter(
-        (item) => item.item !== itemToDelete.item
+      const updatedTaskList = taskList.filter(
+        (t) => t.item !== itemToDelete.item
       );
 
-      await AsyncStorage.setItem("taskList", JSON.stringify(updatedtaskList));
-      setTaskList(updatedtaskList);
+      await AsyncStorage.setItem("taskList", JSON.stringify(updatedTaskList));
+      setTaskList(updatedTaskList);
     } catch (error) {
       console.log("Erro ao excluir a tarefa", error);
     }
