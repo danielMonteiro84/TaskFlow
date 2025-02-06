@@ -192,11 +192,11 @@ export const AuthProviderList = (props: any): any => {
       >
         <View style={style.header}>
           <TouchableOpacity onPress={() => onClose()}>
-            <MaterialIcons name="close" size={30} />
+            <AntDesign name="closecircle" size={30} color="#ff4d4f" />
           </TouchableOpacity>
           <Text style={style.title}>Criar Tarefa</Text>
           <TouchableOpacity onPress={() => handleSave()}>
-            <AntDesign name="check" size={30} />
+            <AntDesign name="checkcircle" size={30} color="#1890ff" />
           </TouchableOpacity>
         </View>
         <View style={style.content}>
